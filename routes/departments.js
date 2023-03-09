@@ -20,8 +20,12 @@ router.post("/new", async (req, res) => {
 });
 
 router.get("/create", async (req, res) => {
-  const deparments = await Departments.find();
-  res.status(200).json(deparments);
+  try {
+    const deparments = await Departments.find();
+    res.status(200).json(deparments);
+  } catch (error) {
+    res.json("error");
+  }
 });
 
 router.get("/", async (req, res) => {
@@ -30,8 +34,8 @@ router.get("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  try {  
-    await Departments.findById(req.params.id)
+  try {
+    await Departments.findById(req.params.id);
 
     // console.log(department)
 
@@ -40,13 +44,10 @@ router.delete("/:id", async (req, res) => {
 
     // Teacher.deleteMany({_id: { $in: teacherIds}});
     res.status(200).json("department is deleted");
-
-
   } catch (error) {
     console.log(error);
   }
 });
-
 
 router.put("/:id", async (req, res) => {
   try {
@@ -62,7 +63,5 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
 
 export default router;
