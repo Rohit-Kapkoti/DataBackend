@@ -8,8 +8,8 @@ const router = express.Router();
 // const toID = mongoose.Schema.Types.ObjectId;
 
 router.post("/new", async (req, res) => {
-  const newDepartment = await new Departments({
-    name: req.body.name,
+  const newDepartment =  new Departments({
+    name: req.body,
   });
   try {
     const savedDepartment = await newDepartment.save();
