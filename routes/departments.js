@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/new", async (req, res) => {
   const newDepartment =  new Departments({
-    name: req.body,
+    name: req.body.newDepartment,
   });
   try {
     const savedDepartment = await newDepartment.save();
